@@ -8,4 +8,5 @@ class AppColors {
   static const Color textColor = Color(0xff484848);
   static const Color brown = Color(0xffBA935C);
   static const Color beige = Color(0xffBA935C);
+  static const Color textFormColor = Color(0xffC4C4C4);
 }
