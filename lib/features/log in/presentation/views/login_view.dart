@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
+import 'package:yjahz_app/core/theming/spacing.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
 import 'package:yjahz_app/core/widgets/custom_button.dart';
 import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
+import 'package:yjahz_app/features/log%20in/presentation/views/widgets/donot_have_account.dart';
 
 import '../../../../core/widgets/app_text_form.dart';
 
@@ -52,35 +54,21 @@ class LoginView extends StatelessWidget {
                         child: Column(
                           children: [
                             const CustomTopSide(text: 'LOG IN'),
-                            SizedBox(height: media.height / 120),
+                            verticlMediaSpace(context, 120),
                             const CustomtitleTextFormField(text: 'Email.'),
                             const AppTextForm(hintText: 'Write your email'),
                             const CustomtitleTextFormField(text: 'Password'),
                             const AppTextForm(
                                 hintText: 'Write 8 character at least'),
-                            SizedBox(height: media.height / 130),
+                            verticlMediaSpace(context, 130),
                             CustomtitleTextFormField(
                                 text: 'Forgot the password ?',
                                 textStyle: Styles.font14W400),
-                            SizedBox(height: media.height / 50),
+                            verticlMediaSpace(context, 50),
                             const CustomButton(text: 'login'),
-                            SizedBox(height: media.height / 90),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('Don’t have an account ? ',
-                                    style: Styles.font12W400),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Sign up',
-                                    style: Styles.font12W600
-                                        .copyWith(color: AppColors.green),
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 25.h)
+                            verticlMediaSpace(context, 90),
+                            const DonotHAveAccount(),
+                            verticalSpace(25)
                           ],
                         ),
                       ),
