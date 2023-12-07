@@ -7,11 +7,11 @@ class AppRouter {
     routes: [
       GoRoute(
         path: LoginView.routeName,
-        builder: (context, state) => const LoginView(),
+        builder: (context, state) => LoginView(),
       ),
       GoRoute(
         path: SignUpview.routeName,
-        builder: (context, state) => const SignUpview(),
+        builder: (context, state) => SignUpview(),
       ),
     ],
   );

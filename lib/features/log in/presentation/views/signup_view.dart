@@ -1,11 +1,106 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:yjahz_app/core/theming/app_colors.dart';
+import 'package:yjahz_app/core/theming/assets.dart';
+import 'package:yjahz_app/features/log%20in/presentation/views/login_view.dart';
+import 'package:yjahz_app/features/log%20in/presentation/views/widgets/have_an_account.dart';
+
+import '../../../../core/theming/spacing.dart';
+import '../../../../core/widgets/app_text_form.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../../core/widgets/custom_title_text_form_field.dart';
+import '../../../../core/widgets/custom_top_side.dart';
 
 class SignUpview extends StatelessWidget {
   static const String routeName = "/signup_view";
-  const SignUpview({super.key});
+  SignUpview({super.key});
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var phoneController = TextEditingController();
+  var passwordController = TextEditingController();
+  var confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    var media = MediaQuery.of(context).size;
+
+    return Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(Assets.background),
+          fit: BoxFit.cover,
+        )),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: SingleChildScrollView(
+            child: SizedBox(
+              height: media.height,
+              child: Column(
+                children: [
+                  const Spacer(flex: 2),
+                  const Image(
+                    image: AssetImage(Assets.logo),
+                    filterQuality: FilterQuality.high,
+                    fit: BoxFit.cover,
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: EdgeInsets.zero,
+                    child: Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40),
+                          topRight: Radius.circular(40),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        child: Column(
+                          children: [
+                            const CustomTopSide(text: 'SIGN UP'),
+                            verticlMediaSpace(context, 120),
+                            const CustomtitleTextFormField(text: 'Name.'),
+                            AppTextForm(
+                                hintText: 'Write 14 character',
+                                controller: nameController),
+                            const CustomtitleTextFormField(text: 'Email.'),
+                            AppTextForm(
+                                hintText: 'Write your email',
+                                controller: emailController),
+                            verticlMediaSpace(context, 130),
+                            const CustomtitleTextFormField(
+                                text: 'Phone Number.'),
+                            AppTextForm(
+                                hintText: 'Write 11 numbers',
+                                controller: phoneController),
+                            const CustomtitleTextFormField(text: 'Password'),
+                            AppTextForm(
+                                hintText: 'Write 8 character at least',
+                                controller: passwordController),
+                            const CustomtitleTextFormField(
+                                text: 'Confirm Password'),
+                            AppTextForm(
+                                hintText: 'Write your password again',
+                                controller: confirmPasswordController),
+                            verticlMediaSpace(context, 40),
+                            const CustomButton(text: 'Sign up'),
+                            verticlMediaSpace(context, 90),
+                            HaveAnAccount(onPressed: () {
+                              GoRouter.of(context).push(LoginView.routeName);
+                            }),
+                            verticalSpace(25)
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }

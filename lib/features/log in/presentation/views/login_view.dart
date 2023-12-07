@@ -15,8 +15,9 @@ import '../../../../core/widgets/app_text_form.dart';
 
 class LoginView extends StatelessWidget {
   static const String routeName = '/';
-  const LoginView({super.key});
-
+  LoginView({super.key});
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -58,10 +59,13 @@ class LoginView extends StatelessWidget {
                             const CustomTopSide(text: 'LOG IN'),
                             verticlMediaSpace(context, 120),
                             const CustomtitleTextFormField(text: 'Email.'),
-                            const AppTextForm(hintText: 'Write your email'),
+                            AppTextForm(
+                                hintText: 'Write your email',
+                                controller: emailController),
                             const CustomtitleTextFormField(text: 'Password'),
-                            const AppTextForm(
-                                hintText: 'Write 8 character at least'),
+                            AppTextForm(
+                                hintText: 'Write 8 character at least',
+                                controller: passwordController),
                             verticlMediaSpace(context, 130),
                             CustomtitleTextFormField(
                                 text: 'Forgot the password ?',
