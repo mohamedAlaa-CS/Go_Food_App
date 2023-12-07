@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
@@ -7,6 +8,7 @@ import 'package:yjahz_app/core/theming/styles.dart';
 import 'package:yjahz_app/core/widgets/custom_button.dart';
 import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
+import 'package:yjahz_app/features/log%20in/presentation/views/signup_view.dart';
 import 'package:yjahz_app/features/log%20in/presentation/views/widgets/donot_have_account.dart';
 
 import '../../../../core/widgets/app_text_form.dart';
@@ -67,7 +69,9 @@ class LoginView extends StatelessWidget {
                             verticlMediaSpace(context, 50),
                             const CustomButton(text: 'login'),
                             verticlMediaSpace(context, 90),
-                            const DonotHAveAccount(),
+                            DonotHAveAccount(onPressed: () {
+                              GoRouter.of(context).push(SignUpview.routeName);
+                            }),
                             verticalSpace(25)
                           ],
                         ),
