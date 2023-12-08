@@ -13,6 +13,7 @@ import 'package:yjahz_app/features/log%20in/presentation/views/widgets/donot_hav
 
 import '../../../../core/widgets/app_text_form.dart';
 
+// ignore: must_be_immutable
 class LoginView extends StatelessWidget {
   static const String routeName = '/';
   LoginView({super.key});

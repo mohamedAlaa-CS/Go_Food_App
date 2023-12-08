@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/Routing/app_router.dart';
 
 void main() {
-  ApiServices.init();
   runApp(const MyApp());
 }
 

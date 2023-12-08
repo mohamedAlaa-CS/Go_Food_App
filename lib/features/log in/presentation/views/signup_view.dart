@@ -12,6 +12,7 @@ import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_title_text_form_field.dart';
 import '../../../../core/widgets/custom_top_side.dart';
 
+// ignore: must_be_immutable
 class SignUpview extends StatelessWidget {
   static const String routeName = "/signup_view";
   SignUpview({super.key});

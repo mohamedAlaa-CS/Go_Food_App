@@ -1,18 +1,11 @@
 import 'package:dio/dio.dart';
 
 abstract class ApiServices {
-  static late Dio dio;
+  final Dio dio;
 
-  static init() {
-    dio = Dio(
-      BaseOptions(
-          baseUrl: 'https://yogahez.mountasher.online/api',
-          receiveDataWhenStatusError: true,
-          headers: {'Accept': 'application/json'}),
-    );
-  }
+  ApiServices(this.dio);
 
-  static Future<Response> getData({
+  getData({
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
@@ -22,7 +15,7 @@ abstract class ApiServices {
     );
   }
 
-  static Future<Response> postData({
+  postData({
     required String endPoint,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
