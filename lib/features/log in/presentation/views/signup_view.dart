@@ -20,6 +20,7 @@ class SignUpview extends StatelessWidget {
   var phoneController = TextEditingController();
   var passwordController = TextEditingController();
   var confirmPasswordController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,41 +59,91 @@ class SignUpview extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Column(
-                          children: [
-                            const CustomTopSide(text: 'SIGN UP'),
-                            verticlMediaSpace(context, 120),
-                            const CustomtitleTextFormField(text: 'Name.'),
-                            AppTextForm(
-                                hintText: 'Write 14 character',
-                                controller: nameController),
-                            const CustomtitleTextFormField(text: 'Email.'),
-                            AppTextForm(
-                                hintText: 'Write your email',
-                                controller: emailController),
-                            verticlMediaSpace(context, 130),
-                            const CustomtitleTextFormField(
-                                text: 'Phone Number.'),
-                            AppTextForm(
-                                hintText: 'Write 11 numbers',
-                                controller: phoneController),
-                            const CustomtitleTextFormField(text: 'Password'),
-                            AppTextForm(
-                                hintText: 'Write 8 character at least',
-                                controller: passwordController),
-                            const CustomtitleTextFormField(
-                                text: 'Confirm Password'),
-                            AppTextForm(
-                                hintText: 'Write your password again',
-                                controller: confirmPasswordController),
-                            verticlMediaSpace(context, 40),
-                            const CustomButton(text: 'Sign up'),
-                            verticlMediaSpace(context, 90),
-                            HaveAnAccount(onPressed: () {
-                              GoRouter.of(context).push(LoginView.routeName);
-                            }),
-                            verticalSpace(25)
-                          ],
+                        child: Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              const CustomTopSide(text: 'SIGN UP'),
+                              verticlMediaSpace(context, 120),
+                              const CustomtitleTextFormField(text: 'Name.'),
+                              AppTextForm(
+                                  hintText: 'Write 14 character',
+                                  controller: nameController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please, Enter your name';
+                                    }
+                                    if (value.trim().length < 8) {
+                                      return 'Write 14 character';
+                                    }
+                                    return null;
+                                  }),
+                              const CustomtitleTextFormField(text: 'Email.'),
+                              AppTextForm(
+                                  hintText: 'Write your email',
+                                  controller: emailController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please, Enter your Email';
+                                    }
+
+                                    return null;
+                                  }),
+                              verticlMediaSpace(context, 130),
+                              const CustomtitleTextFormField(
+                                  text: 'Phone Number.'),
+                              AppTextForm(
+                                  hintText: 'Write 11 numbers',
+                                  controller: phoneController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please, Enter your phone';
+                                    }
+                                    if (value.trim().length < 11) {
+                                      return 'Write 11 number';
+                                    }
+                                    return null;
+                                  }),
+                              const CustomtitleTextFormField(text: 'Password'),
+                              AppTextForm(
+                                  hintText: 'Write 8 character at least',
+                                  controller: passwordController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please, Enter your Password';
+                                    }
+                                    if (value.trim().length < 8) {
+                                      return ' password is short .. !';
+                                    }
+                                    return null;
+                                  }),
+                              const CustomtitleTextFormField(
+                                  text: 'Confirm Password'),
+                              AppTextForm(
+                                  hintText: 'Write your password again',
+                                  controller: confirmPasswordController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Write your password again';
+                                    }
+
+                                    return null;
+                                  }),
+                              verticlMediaSpace(context, 40),
+                              CustomButton(
+                                  text: 'Sign up',
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      print('hello');
+                                    }
+                                  }),
+                              verticlMediaSpace(context, 90),
+                              HaveAnAccount(onPressed: () {
+                                GoRouter.of(context).push(LoginView.routeName);
+                              }),
+                              verticalSpace(25)
+                            ],
+                          ),
                         ),
                       ),
                     ),

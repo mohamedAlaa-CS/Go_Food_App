@@ -18,6 +18,7 @@ class LoginView extends StatelessWidget {
   LoginView({super.key});
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -54,30 +55,50 @@ class LoginView extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Column(
-                          children: [
-                            const CustomTopSide(text: 'LOG IN'),
-                            verticlMediaSpace(context, 120),
-                            const CustomtitleTextFormField(text: 'Email.'),
-                            AppTextForm(
+                        child: Form(
+                          key: formKey,
+                          child: Column(
+                            children: [
+                              const CustomTopSide(text: 'LOG IN'),
+                              verticlMediaSpace(context, 120),
+                              const CustomtitleTextFormField(text: 'Email.'),
+                              AppTextForm(
                                 hintText: 'Write your email',
-                                controller: emailController),
-                            const CustomtitleTextFormField(text: 'Password'),
-                            AppTextForm(
-                                hintText: 'Write 8 character at least',
-                                controller: passwordController),
-                            verticlMediaSpace(context, 130),
-                            CustomtitleTextFormField(
-                                text: 'Forgot the password ?',
-                                textStyle: Styles.font14W400),
-                            verticlMediaSpace(context, 50),
-                            const CustomButton(text: 'login'),
-                            verticlMediaSpace(context, 90),
-                            DonotHAveAccount(onPressed: () {
-                              GoRouter.of(context).push(SignUpview.routeName);
-                            }),
-                            verticalSpace(25)
-                          ],
+                                controller: emailController,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'invaild email ..!';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              const CustomtitleTextFormField(text: 'Password'),
+                              AppTextForm(
+                                  hintText: 'Write 8 character at least',
+                                  controller: passwordController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please,Enter password ..!';
+                                    }
+                                    return null;
+                                  }),
+                              verticlMediaSpace(context, 130),
+                              CustomtitleTextFormField(
+                                  text: 'Forgot the password ?',
+                                  textStyle: Styles.font14W400),
+                              verticlMediaSpace(context, 50),
+                              CustomButton(
+                                  text: 'login',
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {}
+                                  }),
+                              verticlMediaSpace(context, 90),
+                              DonotHAveAccount(onPressed: () {
+                                GoRouter.of(context).push(SignUpview.routeName);
+                              }),
+                              verticalSpace(25)
+                            ],
+                          ),
                         ),
                       ),
                     ),

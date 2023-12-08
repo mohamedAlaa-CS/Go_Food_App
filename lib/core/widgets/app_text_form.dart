@@ -14,7 +14,9 @@ class AppTextForm extends StatelessWidget {
       this.fillColor,
       this.suffixIcon,
       this.isobscure,
-      required this.hintText, required this.controller});
+      required this.hintText,
+      required this.controller,
+      this.validator});
   final EdgeInsetsGeometry? contentPading;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
@@ -25,6 +27,7 @@ class AppTextForm extends StatelessWidget {
   final bool? isobscure;
   final String hintText;
   final TextEditingController controller;
+  final String? Function(String?)? validator;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,6 +39,10 @@ class AppTextForm extends StatelessWidget {
         )
       ]),
       child: TextFormField(
+        validator: validator ??
+            (value) {
+              return null;
+            },
         controller: controller,
         obscureText: isobscure ?? false,
         decoration: InputDecoration(
