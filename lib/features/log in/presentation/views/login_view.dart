@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
@@ -8,6 +11,8 @@ import 'package:yjahz_app/core/theming/styles.dart';
 import 'package:yjahz_app/core/widgets/custom_button.dart';
 import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
+import 'package:yjahz_app/features/log%20in/data/repos/auth_repo_empel.dart';
+import 'package:yjahz_app/features/log%20in/presentation/manager/cubit/login_cubit.dart';
 import 'package:yjahz_app/features/log%20in/presentation/views/signup_view.dart';
 import 'package:yjahz_app/features/log%20in/presentation/views/widgets/donot_have_account.dart';
 
@@ -29,84 +34,113 @@ class LoginView extends StatelessWidget {
           image: AssetImage(Assets.background),
           fit: BoxFit.cover,
         )),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: media.height,
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
-                  const Image(
-                    image: AssetImage(Assets.logo),
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover,
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: EdgeInsets.zero,
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
+        child: BlocProvider(
+          create: (context) => LoginCubit(AuthRepoImpel(ApiServices(Dio()))),
+          child: BlocConsumer<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if (state is LoginLoadingState) {
+                const Center(child: CircularProgressIndicator());
+              }
+              if (state is LoginFailuerState) {
+                print(state.error);
+                Text(state.error);
+              }
+              if (state is LoginSuccessState) {
+                print(state.model.message);
+              }
+            },
+            builder: (context, state) {
+              var cubit = LoginCubit.get(context);
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                body: SingleChildScrollView(
+                  child: SizedBox(
+                    height: media.height,
+                    child: Column(
+                      children: [
+                        const Spacer(flex: 2),
+                        const Image(
+                          image: AssetImage(Assets.logo),
+                          filterQuality: FilterQuality.high,
+                          fit: BoxFit.cover,
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            children: [
-                              const CustomTopSide(text: 'LOG IN'),
-                              verticlMediaSpace(context, 120),
-                              const CustomtitleTextFormField(text: 'Email.'),
-                              AppTextForm(
-                                hintText: 'Write your email',
-                                controller: emailController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'invaild email ..!';
-                                  }
-                                  return null;
-                                },
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.zero,
+                          child: Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                topRight: Radius.circular(40),
                               ),
-                              const CustomtitleTextFormField(text: 'Password'),
-                              AppTextForm(
-                                  hintText: 'Write 8 character at least',
-                                  controller: passwordController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please,Enter password ..!';
-                                    }
-                                    return null;
-                                  }),
-                              verticlMediaSpace(context, 130),
-                              CustomtitleTextFormField(
-                                  text: 'Forgot the password ?',
-                                  textStyle: Styles.font14W400),
-                              verticlMediaSpace(context, 50),
-                              CustomButton(
-                                  text: 'login',
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {}
-                                  }),
-                              verticlMediaSpace(context, 90),
-                              DonotHAveAccount(onPressed: () {
-                                GoRouter.of(context).push(SignUpview.routeName);
-                              }),
-                              verticalSpace(25)
-                            ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  children: [
+                                    const CustomTopSide(text: 'LOG IN'),
+                                    verticlMediaSpace(context, 120),
+                                    const CustomtitleTextFormField(
+                                        text: 'Email.'),
+                                    AppTextForm(
+                                      hintText: 'Write your email',
+                                      controller: emailController,
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return 'invaild email ..!';
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    const CustomtitleTextFormField(
+                                        text: 'Password'),
+                                    AppTextForm(
+                                        hintText: 'Write 8 character at least',
+                                        controller: passwordController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please,Enter password ..!';
+                                          }
+                                          return null;
+                                        }),
+                                    verticlMediaSpace(context, 130),
+                                    CustomtitleTextFormField(
+                                        text: 'Forgot the password ?',
+                                        textStyle: Styles.font14W400),
+                                    verticlMediaSpace(context, 50),
+                                    CustomButton(
+                                        text: 'login',
+                                        onPressed: () {
+                                          if (formKey.currentState!
+                                              .validate()) {
+                                            cubit.userLogin(
+                                                email: emailController.text,
+                                                password:
+                                                    passwordController.text);
+                                          }
+                                        }),
+                                    verticlMediaSpace(context, 90),
+                                    DonotHAveAccount(onPressed: () {
+                                      GoRouter.of(context)
+                                          .push(SignUpview.routeName);
+                                    }),
+                                    verticalSpace(25)
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ));
   }

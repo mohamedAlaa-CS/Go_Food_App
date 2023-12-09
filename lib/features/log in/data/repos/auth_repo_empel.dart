@@ -16,7 +16,7 @@ class AuthRepoImpel implements AuthRepo {
     required String password,
   }) async {
     try {
-      var data = await apiServices.getData(endPoint: LOGIN, query: {
+      var data = await apiServices.postData(endPoint: LOGIN, data: {
         'email': email,
         'password': password,
       });

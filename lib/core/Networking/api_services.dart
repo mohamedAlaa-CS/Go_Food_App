@@ -1,29 +1,31 @@
 import 'package:dio/dio.dart';
 
-abstract class ApiServices {
+class ApiServices {
   final Dio dio;
-
+  final _baseUrl = 'https://yogahez.mountasher.online/api';
   ApiServices(this.dio);
 
-  getData({
+  Future<Map<String, dynamic>> getData({
     required String endPoint,
     Map<String, dynamic>? query,
   }) async {
-    return await dio.get(
-      endPoint,
+    var response = await dio.get(
+      '$_baseUrl$endPoint',
       queryParameters: query,
     );
+    return response.data;
   }
 
-  postData({
+  Future<Map<String, dynamic>> postData({
     required String endPoint,
     Map<String, dynamic>? query,
     required Map<String, dynamic> data,
   }) async {
-    return await dio.post(
-      endPoint,
+    var response = await dio.post(
+      '$_baseUrl$endPoint',
       queryParameters: query,
       data: data,
     );
+    return response.data;
   }
 }
