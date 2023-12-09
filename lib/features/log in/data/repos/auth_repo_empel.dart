@@ -29,4 +29,29 @@ class AuthRepoImpel implements AuthRepo {
       }
     }
   }
+
+  @override
+  Future<Either<Failure, UserModel>> userSigup({
+    required String name,
+    required String email,
+    required int phone,
+    required String password,
+  }) async {
+    try {
+      var data = await apiServices.postData(endPoint: SIGNUP, data: {
+        'name': name,
+        'email': email,
+        'phone': phone,
+        'password': password
+      });
+
+      return right(UserModel.fromJson(data));
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDiorError(e));
+      } else {
+        return left(ServerFailure(e.toString()));
+      }
+    }
+  }
 }

@@ -7,4 +7,10 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+  Future<Either<Failure, UserModel>> userSigup({
+    required String name,
+    required String email,
+    required int phone,
+    required String password,
+  });
 }
