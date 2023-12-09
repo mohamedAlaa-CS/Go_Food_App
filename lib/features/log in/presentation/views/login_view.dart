@@ -14,11 +14,11 @@ import 'package:yjahz_app/core/widgets/custom_button.dart';
 import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
 import 'package:yjahz_app/features/log%20in/data/repos/auth_repo_empel.dart';
-import 'package:yjahz_app/features/log%20in/presentation/manager/cubit/login_cubit.dart';
 import 'package:yjahz_app/features/log%20in/presentation/views/signup_view.dart';
 import 'package:yjahz_app/features/log%20in/presentation/views/widgets/donot_have_account.dart';
 
 import '../../../../core/widgets/app_text_form.dart';
+import '../manager/login cubit/login_cubit.dart';
 
 // ignore: must_be_immutable
 class LoginView extends StatelessWidget {
