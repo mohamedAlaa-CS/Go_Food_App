@@ -1,8 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
+import 'package:yjahz_app/features/Auth%20screen/data/repos/auth_repo_empel.dart';
+import 'package:yjahz_app/features/Auth%20screen/presentation/manager/signup%20cubit/signup_cubit.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/widgets/have_an_account.dart';
 
 import '../../../../core/theming/spacing.dart';
@@ -33,125 +38,138 @@ class SignUpview extends StatelessWidget {
           image: AssetImage(Assets.background),
           fit: BoxFit.cover,
         )),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: SizedBox(
-              height: media.height,
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
-                  const Image(
-                    image: AssetImage(Assets.logo),
-                    filterQuality: FilterQuality.high,
-                    fit: BoxFit.cover,
-                  ),
-                  const Spacer(),
-                  Padding(
-                    padding: EdgeInsets.zero,
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                          topRight: Radius.circular(40),
+        child: BlocProvider(
+          create: (context) => SignupCubit(AuthRepoImpel(ApiServices(Dio()))),
+          child: BlocConsumer<SignupCubit, SignupState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Scaffold(
+                backgroundColor: Colors.transparent,
+                body: SingleChildScrollView(
+                  child: SizedBox(
+                    height: media.height,
+                    child: Column(
+                      children: [
+                        const Spacer(flex: 2),
+                        const Image(
+                          image: AssetImage(Assets.logo),
+                          filterQuality: FilterQuality.high,
+                          fit: BoxFit.cover,
                         ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: Form(
-                          key: formKey,
-                          child: Column(
-                            children: [
-                              const CustomTopSide(text: 'SIGN UP'),
-                              verticlMediaSpace(context, 120),
-                              const CustomtitleTextFormField(text: 'Name.'),
-                              AppTextForm(
-                                  hintText: 'Write 14 character',
-                                  controller: nameController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please, Enter your name';
-                                    }
-                                    if (value.trim().length < 8) {
-                                      return 'Write 14 character';
-                                    }
-                                    return null;
-                                  }),
-                              const CustomtitleTextFormField(text: 'Email.'),
-                              AppTextForm(
-                                  hintText: 'Write your email',
-                                  controller: emailController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please, Enter your Email';
-                                    }
+                        const Spacer(),
+                        Padding(
+                          padding: EdgeInsets.zero,
+                          child: Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(40),
+                                topRight: Radius.circular(40),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
+                              child: Form(
+                                key: formKey,
+                                child: Column(
+                                  children: [
+                                    const CustomTopSide(text: 'SIGN UP'),
+                                    verticlMediaSpace(context, 120),
+                                    const CustomtitleTextFormField(
+                                        text: 'Name.'),
+                                    AppTextForm(
+                                        hintText: 'Write 14 character',
+                                        controller: nameController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please, Enter your name';
+                                          }
+                                          if (value.trim().length < 8) {
+                                            return 'Write 14 character';
+                                          }
+                                          return null;
+                                        }),
+                                    const CustomtitleTextFormField(
+                                        text: 'Email.'),
+                                    AppTextForm(
+                                        hintText: 'Write your email',
+                                        controller: emailController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please, Enter your Email';
+                                          }
 
-                                    return null;
-                                  }),
-                              verticlMediaSpace(context, 130),
-                              const CustomtitleTextFormField(
-                                  text: 'Phone Number.'),
-                              AppTextForm(
-                                  hintText: 'Write 11 numbers',
-                                  controller: phoneController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please, Enter your phone';
-                                    }
-                                    if (value.trim().length < 11) {
-                                      return 'Write 11 number';
-                                    }
-                                    return null;
-                                  }),
-                              const CustomtitleTextFormField(text: 'Password'),
-                              AppTextForm(
-                                  hintText: 'Write 8 character at least',
-                                  controller: passwordController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please, Enter your Password';
-                                    }
-                                    if (value.trim().length < 8) {
-                                      return ' password is short .. !';
-                                    }
-                                    return null;
-                                  }),
-                              const CustomtitleTextFormField(
-                                  text: 'Confirm Password'),
-                              AppTextForm(
-                                  hintText: 'Write your password again',
-                                  controller: confirmPasswordController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Write your password again';
-                                    }
+                                          return null;
+                                        }),
+                                    verticlMediaSpace(context, 130),
+                                    const CustomtitleTextFormField(
+                                        text: 'Phone Number.'),
+                                    AppTextForm(
+                                        hintText: 'Write 11 numbers',
+                                        controller: phoneController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please, Enter your phone';
+                                          }
+                                          if (value.trim().length < 11) {
+                                            return 'Write 11 number';
+                                          }
+                                          return null;
+                                        }),
+                                    const CustomtitleTextFormField(
+                                        text: 'Password'),
+                                    AppTextForm(
+                                        hintText: 'Write 8 character at least',
+                                        controller: passwordController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please, Enter your Password';
+                                          }
+                                          if (value.trim().length < 8) {
+                                            return ' password is short .. !';
+                                          }
+                                          return null;
+                                        }),
+                                    const CustomtitleTextFormField(
+                                        text: 'Confirm Password'),
+                                    AppTextForm(
+                                        hintText: 'Write your password again',
+                                        controller: confirmPasswordController,
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Write your password again';
+                                          }
 
-                                    return null;
-                                  }),
-                              verticlMediaSpace(context, 40),
-                              CustomButton(
-                                  text: 'Sign up',
-                                  onPressed: () {
-                                    if (formKey.currentState!.validate()) {
-                                      print('hello');
-                                    }
-                                  }),
-                              verticlMediaSpace(context, 90),
-                              HaveAnAccount(onPressed: () {
-                                GoRouter.of(context).push(LoginView.routeName);
-                              }),
-                              verticalSpace(25)
-                            ],
+                                          return null;
+                                        }),
+                                    verticlMediaSpace(context, 40),
+                                    CustomButton(
+                                        text: 'Sign up',
+                                        onPressed: () {
+                                          if (formKey.currentState!
+                                              .validate()) {
+                                            print('hello');
+                                          }
+                                        }),
+                                    verticlMediaSpace(context, 90),
+                                    HaveAnAccount(onPressed: () {
+                                      GoRouter.of(context)
+                                          .push(LoginView.routeName);
+                                    }),
+                                    verticalSpace(25)
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         ));
   }

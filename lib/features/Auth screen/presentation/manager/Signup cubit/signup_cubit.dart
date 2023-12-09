@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../data/repos/auth_repo.dart';
@@ -22,5 +23,15 @@ class SignupCubit extends Cubit<SignupState> {
     }, (userModel) {
       emit(SignupSuccessState());
     });
+  }
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+  void changeVisablityPassword() {
+    isPassword = !isPassword;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+
+    emit(SignupChangeVisabilityPasswordState());
   }
 }
