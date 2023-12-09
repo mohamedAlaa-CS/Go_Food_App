@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yjahz_app/features/Auth%20screen/data/models/user/user_model.dart';
 
 import '../../../data/repos/auth_repo.dart';
 
@@ -12,7 +13,7 @@ class SignupCubit extends Cubit<SignupState> {
   userSignup({
     required String name,
     required String email,
-    required int phone,
+    required String phone,
     required String password,
   }) async {
     emit(SignupLoadingState());
@@ -21,7 +22,7 @@ class SignupCubit extends Cubit<SignupState> {
     result.fold((failuer) {
       emit(SignupFailuerState(failuer.message));
     }, (userModel) {
-      emit(SignupSuccessState());
+      emit(SignupSuccessState(userModel));
     });
   }
 

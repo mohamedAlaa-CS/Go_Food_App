@@ -41,7 +41,11 @@ class SignUpview extends StatelessWidget {
         child: BlocProvider(
           create: (context) => SignupCubit(AuthRepoImpel(ApiServices(Dio()))),
           child: BlocConsumer<SignupCubit, SignupState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is SignupSuccessState) {
+                print(state.model.message);
+              }
+            },
             builder: (context, state) {
               return Scaffold(
                 backgroundColor: Colors.transparent,
@@ -175,7 +179,12 @@ class SignUpview extends StatelessWidget {
                                         onPressed: () {
                                           if (formKey.currentState!
                                               .validate()) {
-                                            print('hello');
+                                            SignupCubit.get(context).userSignup(
+                                              name: nameController.text,
+                                              email: emailController.text,
+                                              phone: phoneController.text,
+                                              password: passwordController.text,
+                                            );
                                           }
                                         }),
                                     verticlMediaSpace(context, 90),

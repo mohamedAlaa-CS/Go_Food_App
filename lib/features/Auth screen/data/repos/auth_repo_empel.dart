@@ -35,7 +35,7 @@ class AuthRepoImpel implements AuthRepo {
   Future<Either<Failure, UserModel>> userSigup({
     required String name,
     required String email,
-    required int phone,
+    required String phone,
     required String password,
   }) async {
     try {
