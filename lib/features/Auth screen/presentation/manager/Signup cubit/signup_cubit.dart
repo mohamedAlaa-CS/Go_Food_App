@@ -8,7 +8,7 @@ part 'signup_state.dart';
 class SignupCubit extends Cubit<SignupState> {
   SignupCubit(this.authRepo) : super(SignupInitial());
   final AuthRepo authRepo;
-  SignupCubit get(context) => BlocProvider.of(context);
+ static SignupCubit get(context) => BlocProvider.of(context);
   userSignup({
     required String name,
     required String email,

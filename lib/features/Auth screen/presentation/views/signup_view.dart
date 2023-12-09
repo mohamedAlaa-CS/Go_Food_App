@@ -93,6 +93,7 @@ class SignUpview extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Email.'),
                                     AppTextForm(
+                                        textType: TextInputType.emailAddress,
                                         hintText: 'Write your email',
                                         controller: emailController,
                                         validator: (value) {
@@ -106,6 +107,7 @@ class SignUpview extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Phone Number.'),
                                     AppTextForm(
+                                        textType: TextInputType.phone,
                                         hintText: 'Write 11 numbers',
                                         controller: phoneController,
                                         validator: (value) {
@@ -120,6 +122,14 @@ class SignUpview extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Password'),
                                     AppTextForm(
+                                        suffixIcon:
+                                            SignupCubit.get(context).suffix,
+                                        suffixPressed: () {
+                                          SignupCubit.get(context)
+                                              .changeVisablityPassword();
+                                        },
+                                        isobscure:
+                                            SignupCubit.get(context).isPassword,
                                         hintText: 'Write 8 character at least',
                                         controller: passwordController,
                                         validator: (value) {
@@ -129,16 +139,32 @@ class SignUpview extends StatelessWidget {
                                           if (value.trim().length < 8) {
                                             return ' password is short .. !';
                                           }
+                                          if (value !=
+                                              confirmPasswordController.text) {
+                                            return ' Not Match';
+                                          }
                                           return null;
                                         }),
                                     const CustomtitleTextFormField(
                                         text: 'Confirm Password'),
                                     AppTextForm(
+                                        suffixIcon:
+                                            SignupCubit.get(context).suffix,
+                                        suffixPressed: () {
+                                          SignupCubit.get(context)
+                                              .changeVisablityPassword();
+                                        },
+                                        isobscure:
+                                            SignupCubit.get(context).isPassword,
                                         hintText: 'Write your password again',
                                         controller: confirmPasswordController,
                                         validator: (value) {
                                           if (value == null || value.isEmpty) {
                                             return 'Write your password again';
+                                          }
+                                          if (value !=
+                                              passwordController.text) {
+                                            return ' Not Match';
                                           }
 
                                           return null;

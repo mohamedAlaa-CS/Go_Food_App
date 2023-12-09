@@ -17,7 +17,8 @@ class AppTextForm extends StatelessWidget {
       required this.hintText,
       required this.controller,
       this.validator,
-      this.suffixPressed});
+      this.suffixPressed,
+      this.textType});
   final EdgeInsetsGeometry? contentPading;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
@@ -30,6 +31,7 @@ class AppTextForm extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final VoidCallback? suffixPressed;
+  final TextInputType? textType;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,6 +50,7 @@ class AppTextForm extends StatelessWidget {
         controller: controller,
         obscureText: isobscure ?? false,
         obscuringCharacter: '*',
+        keyboardType: textType,
         decoration: InputDecoration(
           suffixIcon: InkWell(
             onTap: suffixPressed ?? () {},
