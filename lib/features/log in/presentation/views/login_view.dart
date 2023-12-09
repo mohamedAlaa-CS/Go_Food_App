@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +22,7 @@ import '../../../../core/widgets/app_text_form.dart';
 
 // ignore: must_be_immutable
 class LoginView extends StatelessWidget {
-  static const String routeName = '/';
+  static const String routeName = '/login_view';
   LoginView({super.key});
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -39,24 +40,21 @@ class LoginView extends StatelessWidget {
           create: (context) => LoginCubit(AuthRepoImpel(ApiServices(Dio()))),
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
-              if (state is LoginLoadingState) {
-                const Center(child: CircularProgressIndicator());
-              }
               if (state is LoginFailuerState) {
                 CustomToast.errorToast(state.error);
               }
               if (state is LoginSuccessState) {
-                String? msg = state.model.message;
                 if (state.model.success!) {
-                  CustomToast.successToast(msg);
-                  GoRouter.of(context).push(SignUpview.routeName);
+                  CustomToast.successToast(state.model.message);
+                  CustomToast.closeToast().then((value) {
+                    GoRouter.of(context).push(SignUpview.routeName);
+                  });
                 } else {
-                  CustomToast.errorToast(msg);
+                  CustomToast.errorToast(state.model.message);
                 }
               }
             },
             builder: (context, state) {
-              var cubit = LoginCubit.get(context);
               return Scaffold(
                 backgroundColor: Colors.transparent,
                 body: SingleChildScrollView(
@@ -105,6 +103,14 @@ class LoginView extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Password'),
                                     AppTextForm(
+                                        suffixIcon:
+                                            LoginCubit.get(context).suffix,
+                                        suffixPressed: () {
+                                          LoginCubit.get(context)
+                                              .changeVisablityPassword();
+                                        },
+                                        isobscure:
+                                            LoginCubit.get(context).isPassword,
                                         hintText: 'Write 8 character at least',
                                         controller: passwordController,
                                         validator: (value) {
@@ -118,17 +124,24 @@ class LoginView extends StatelessWidget {
                                         text: 'Forgot the password ?',
                                         textStyle: Styles.font14W400),
                                     verticlMediaSpace(context, 50),
-                                    CustomButton(
-                                        text: 'login',
-                                        onPressed: () {
-                                          if (formKey.currentState!
-                                              .validate()) {
-                                            cubit.userLogin(
-                                                email: emailController.text,
-                                                password:
-                                                    passwordController.text);
-                                          }
-                                        }),
+                                    ConditionalBuilder(
+                                      condition: state is! LoginLoadingState,
+                                      builder: (context) => CustomButton(
+                                          text: 'login',
+                                          onPressed: () {
+                                            if (formKey.currentState!
+                                                .validate()) {
+                                              LoginCubit.get(context).userLogin(
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text);
+                                            }
+                                          }),
+                                      fallback: (context) => const Center(
+                                          child: CircularProgressIndicator(
+                                        color: AppColors.green,
+                                      )),
+                                    ),
                                     verticlMediaSpace(context, 90),
                                     DonotHAveAccount(onPressed: () {
                                       GoRouter.of(context)

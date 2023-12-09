@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yjahz_app/features/log%20in/data/models/user/user_model.dart';
 import 'package:yjahz_app/features/log%20in/data/repos/auth_repo.dart';
@@ -20,5 +20,15 @@ class LoginCubit extends Cubit<LoginState> {
     }, (loginUser) {
       emit(LoginSuccessState(loginUser));
     });
+  }
+
+  IconData suffix = Icons.visibility_outlined;
+  bool isPassword = true;
+  void changeVisablityPassword() {
+    isPassword = !isPassword;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
+
+    emit(LoginChangeVisabilityPasswordState());
   }
 }

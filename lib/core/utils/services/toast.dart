@@ -26,4 +26,8 @@ class CustomToast {
       fontSize: 16.0.sp,
     );
   }
+
+  static Future<bool?> closeToast() async {
+    return await Fluttertoast.cancel();
+  }
 }

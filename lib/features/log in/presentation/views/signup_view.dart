@@ -14,7 +14,7 @@ import '../../../../core/widgets/custom_top_side.dart';
 
 // ignore: must_be_immutable
 class SignUpview extends StatelessWidget {
-  static const String routeName = "/signup_view";
+  static const String routeName = "/";
   SignUpview({super.key});
   var nameController = TextEditingController();
   var emailController = TextEditingController();

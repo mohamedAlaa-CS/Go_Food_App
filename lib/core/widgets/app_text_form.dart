@@ -16,18 +16,20 @@ class AppTextForm extends StatelessWidget {
       this.isobscure,
       required this.hintText,
       required this.controller,
-      this.validator});
+      this.validator,
+      this.suffixPressed});
   final EdgeInsetsGeometry? contentPading;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
   final InputBorder? border;
   final TextStyle? hintStyle;
   final Color? fillColor;
-  final Widget? suffixIcon;
+  final IconData? suffixIcon;
   final bool? isobscure;
   final String hintText;
   final TextEditingController controller;
   final String? Function(String?)? validator;
+  final VoidCallback? suffixPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,8 +47,12 @@ class AppTextForm extends StatelessWidget {
             },
         controller: controller,
         obscureText: isobscure ?? false,
+        obscuringCharacter: '*',
         decoration: InputDecoration(
-          suffixIcon: suffixIcon,
+          suffixIcon: InkWell(
+            onTap: suffixPressed ?? () {},
+            child: Icon(suffixIcon, color: Colors.grey.shade600),
+          ),
           hintText: hintText,
           hintStyle: hintStyle ?? Styles.font16W300,
           fillColor: fillColor ?? AppColors.white,
