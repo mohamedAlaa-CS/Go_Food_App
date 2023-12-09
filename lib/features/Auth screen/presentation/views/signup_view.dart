@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
+import 'package:yjahz_app/core/utils/services/toast.dart';
 import 'package:yjahz_app/features/Auth%20screen/data/repos/auth_repo_empel.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/manager/signup%20cubit/signup_cubit.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/widgets/have_an_account.dart';
@@ -43,7 +45,14 @@ class SignUpview extends StatelessWidget {
           child: BlocConsumer<SignupCubit, SignupState>(
             listener: (context, state) {
               if (state is SignupSuccessState) {
-                print(state.model.message);
+                if (state.model.success!) {
+                  CustomToast.successToast(state.model.message);
+                  CustomToast.closeToast().then((value) {
+                    GoRouter.of(context).push(LoginView.routeName);
+                  });
+                } else {
+                  CustomToast.errorToast(state.model.message);
+                }
               }
             },
             builder: (context, state) {
@@ -174,19 +183,28 @@ class SignUpview extends StatelessWidget {
                                           return null;
                                         }),
                                     verticlMediaSpace(context, 40),
-                                    CustomButton(
-                                        text: 'Sign up',
-                                        onPressed: () {
-                                          if (formKey.currentState!
-                                              .validate()) {
-                                            SignupCubit.get(context).userSignup(
-                                              name: nameController.text,
-                                              email: emailController.text,
-                                              phone: phoneController.text,
-                                              password: passwordController.text,
-                                            );
-                                          }
-                                        }),
+                                    ConditionalBuilder(
+                                      condition: state is! SignupLoadingState,
+                                      builder: (context) => CustomButton(
+                                          text: 'Sign up',
+                                          onPressed: () {
+                                            if (formKey.currentState!
+                                                .validate()) {
+                                              SignupCubit.get(context)
+                                                  .userSignup(
+                                                name: nameController.text,
+                                                email: emailController.text,
+                                                phone: phoneController.text,
+                                                password:
+                                                    passwordController.text,
+                                              );
+                                            }
+                                          }),
+                                      fallback: (context) => const Center(
+                                          child: CircularProgressIndicator(
+                                        color: AppColors.green,
+                                      )),
+                                    ),
                                     verticlMediaSpace(context, 90),
                                     HaveAnAccount(onPressed: () {
                                       GoRouter.of(context)

@@ -91,6 +91,7 @@ class LoginView extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Email.'),
                                     AppTextForm(
+                                      textType: TextInputType.emailAddress,
                                       hintText: 'Write your email',
                                       controller: emailController,
                                       validator: (value) {
@@ -103,6 +104,7 @@ class LoginView extends StatelessWidget {
                                     const CustomtitleTextFormField(
                                         text: 'Password'),
                                     AppTextForm(
+                                        textType: TextInputType.visiblePassword,
                                         suffixIcon:
                                             LoginCubit.get(context).suffix,
                                         suffixPressed: () {
