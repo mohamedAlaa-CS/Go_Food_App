@@ -8,6 +8,7 @@ import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+import 'package:yjahz_app/core/utils/services/toast.dart';
 import 'package:yjahz_app/core/widgets/custom_button.dart';
 import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
@@ -42,11 +43,16 @@ class LoginView extends StatelessWidget {
                 const Center(child: CircularProgressIndicator());
               }
               if (state is LoginFailuerState) {
-                print(state.error);
-                Text(state.error);
+                CustomToast.errorToast(state.error);
               }
               if (state is LoginSuccessState) {
-                print(state.model.message);
+                String? msg = state.model.message;
+                if (state.model.success!) {
+                  CustomToast.successToast(msg);
+                  GoRouter.of(context).push(SignUpview.routeName);
+                } else {
+                  CustomToast.errorToast(msg);
+                }
               }
             },
             builder: (context, state) {
