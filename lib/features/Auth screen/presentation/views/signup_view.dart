@@ -3,14 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
-import 'package:yjahz_app/features/log%20in/presentation/views/login_view.dart';
-import 'package:yjahz_app/features/log%20in/presentation/views/widgets/have_an_account.dart';
+import 'package:yjahz_app/features/Auth%20screen/presentation/views/widgets/have_an_account.dart';
 
 import '../../../../core/theming/spacing.dart';
 import '../../../../core/widgets/app_text_form.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_title_text_form_field.dart';
 import '../../../../core/widgets/custom_top_side.dart';
+import 'login_view.dart';
 
 // ignore: must_be_immutable
 class SignUpview extends StatelessWidget {

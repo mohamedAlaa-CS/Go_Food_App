@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yjahz_app/features/log%20in/data/models/user/user_model.dart';
-import 'package:yjahz_app/features/log%20in/data/repos/auth_repo.dart';
+
+import '../../../data/models/user/user_model.dart';
+import '../../../data/repos/auth_repo.dart';
 
 part 'login_state.dart';
 

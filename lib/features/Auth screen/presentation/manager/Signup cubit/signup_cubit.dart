@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yjahz_app/features/log%20in/data/repos/auth_repo.dart';
+
+import '../../../data/repos/auth_repo.dart';
 
 part 'signup_state.dart';
 
