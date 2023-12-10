@@ -4,6 +4,7 @@ import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+import 'package:yjahz_app/features/home/presentation/views/widgets/category_list_view.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/search_section.dart';
 
 // ignore: must_be_immutable
@@ -14,7 +15,6 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -73,6 +73,15 @@ class HomeView extends StatelessWidget {
             filterPressd: () {},
             searchPressd: () {},
           ),
+          // verticalSpace(24),
+          Padding(
+            padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
+            child: Text(
+              'Categories.',
+              style: Styles.font18W500,
+            ),
+          ),
+          const CategoryListView()
         ],
       ),
     );
