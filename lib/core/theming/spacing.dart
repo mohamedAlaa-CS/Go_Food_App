@@ -11,5 +11,5 @@ SizedBox verticlMediaSpace(BuildContext context, double height) => SizedBox(
       height: MediaQuery.of(context).size.height / height,
     );
 SizedBox horzontalMediaSpace(BuildContext context, double width) => SizedBox(
-      height: MediaQuery.of(context).size.height / width,
+      width: MediaQuery.of(context).size.width / width,
     );

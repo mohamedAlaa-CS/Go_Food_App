@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/Routing/app_router.dart';
+import 'package:yjahz_app/core/theming/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       child: MaterialApp.router(
+        theme: appTheme,
         routerConfig: AppRouter.router,
         debugShowCheckedModeBanner: false,
         title: 'Ygahz app',
