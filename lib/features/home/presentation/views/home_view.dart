@@ -7,6 +7,8 @@ import 'package:yjahz_app/core/theming/styles.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/category_list_view.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/search_section.dart';
 
+import 'widgets/popular_list_view_Item.dart';
+
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
   static const String routeName = '/';
@@ -81,7 +83,12 @@ class HomeView extends StatelessWidget {
               style: Styles.font18W500,
             ),
           ),
-          const CategoryListView()
+          const CategoryListView(),
+          Text(
+            'Popular now.',
+            style: Styles.font18W500,
+          ),
+          const PopularListViewItem()
         ],
       ),
     );

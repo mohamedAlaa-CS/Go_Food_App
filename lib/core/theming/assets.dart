@@ -5,4 +5,5 @@ class Assets {
   static const String shoppingIconImage = 'assets/images/shopping_icon.png';
   static const String categoryIconImage = 'assets/images/category_icon.png';
   static const String filterIconImage = 'assets/images/filter_icon.png';
+  static const String testBigImage = 'assets/images/test_image_big.jpg';
 }
