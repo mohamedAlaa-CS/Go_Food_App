@@ -5,10 +5,11 @@ class ApiServices {
   final _baseUrl = 'https://yogahez.mountasher.online/api';
   ApiServices(this.dio);
 
-  Future<Map<String, dynamic>> getData({
-    required String endPoint,
-    Map<String, dynamic>? query,
-  }) async {
+  Future<Map<String, dynamic>> getData(
+      {required String endPoint,
+      Map<String, dynamic>? query,
+      String lang = 'en'}) async {
+    dio.options.headers = {'lang': lang};
     var response = await dio.get(
       '$_baseUrl$endPoint',
       queryParameters: query,

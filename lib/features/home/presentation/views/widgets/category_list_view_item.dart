@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
-import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
 
-class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key});
+import '../../../data/models/home category model/datum_category_model.dart';
 
+class CategoryItem extends StatelessWidget {
+  const CategoryItem({super.key, required this.model});
+  final Datum model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,7 +33,7 @@ class CategoryItem extends StatelessWidget {
               const Spacer(flex: 2),
               Image(
                 height: 72.h,
-                image: const AssetImage(Assets.testImage),
+                image: NetworkImage(model.image ?? ''),
                 fit: BoxFit.cover,
               ),
               const Spacer(),
@@ -42,7 +43,7 @@ class CategoryItem extends StatelessWidget {
           Align(
             alignment: Alignment.bottomLeft,
             child: Text(
-              'Resturants',
+              model.name ?? '',
               style: Styles.font12W400.copyWith(
                 fontWeight: FontWeight.w500,
               ),

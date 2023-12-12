@@ -1,16 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yjahz_app/features/home/data/models/home%20category%20model/home_category_model.dart';
 import 'package:yjahz_app/features/home/data/repos/home_repo.dart';
+
+import '../../../data/models/home category model/datum_category_model.dart';
 
 part 'home_category_state.dart';
 
 class HomeCategoryCubit extends Cubit<HomeCategoryState> {
   HomeCategoryCubit(this.homeRepo) : super(HomeCategoryInitial());
-  HomeCategoryCubit get(context) => BlocProvider.of(context);
+  static HomeCategoryCubit get(context) => BlocProvider.of(context);
   final HomeRepo homeRepo;
 
   //! fetch category Data
-  List<HomeCategoryModel> homeCategoryData = [];
+  List<Datum> homeCategoryData = [];
   fetchHomeCategory() async {
     emit(HomeCategoryLoadingState());
 
