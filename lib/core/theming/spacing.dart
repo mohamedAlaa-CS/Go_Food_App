@@ -5,7 +5,7 @@ SizedBox verticalSpace(double height) => SizedBox(
       height: height.h,
     );
 SizedBox horizontalSpace(double width) => SizedBox(
-      height: width.h,
+      width: width.h,
     );
 SizedBox verticlMediaSpace(BuildContext context, double height) => SizedBox(
       height: MediaQuery.of(context).size.height / height,
