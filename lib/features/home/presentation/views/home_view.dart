@@ -48,75 +48,77 @@ class HomeView extends StatelessWidget {
               )),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 1.h),
-            child: Text(
-              'Hello Ahmed',
-              style: Styles.font18W500.copyWith(fontSize: 24.sp),
-            ),
-          ),
-          Row(
-            children: [
-              horzontalMediaSpace(context, 15),
-              Text(
-                'Riyadh ( 15 -Jasmine neighbo...',
-                style: Styles.font16W300.copyWith(fontSize: 20.sp),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 1.h),
+              child: Text(
+                'Hello Ahmed',
+                style: Styles.font18W500.copyWith(fontSize: 24.sp),
               ),
-              const Icon(
-                Icons.arrow_forward_ios,
-                color: AppColors.primary,
-              )
-            ],
-          ),
-          SearchSection(
-            searchController: searchController,
-            filterPressd: () {},
-            searchPressd: () {},
-          ),
-          // verticalSpace(24),
-          Padding(
-            padding: EdgeInsets.only(
-              left: media.width / 12,
-              top: media.height / 50,
-              bottom: media.height / 60,
             ),
-            // padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
-            child: Text(
-              'Categories.',
-              style: Styles.font18W500,
+            Row(
+              children: [
+                horzontalMediaSpace(context, 15),
+                Text(
+                  'Riyadh ( 15 -Jasmine neighbo...',
+                  style: Styles.font16W300.copyWith(fontSize: 20.sp),
+                ),
+                const Icon(
+                  Icons.arrow_forward_ios,
+                  color: AppColors.primary,
+                )
+              ],
             ),
-          ),
-          const CategoryListView(),
-          Padding(
-            padding: EdgeInsets.only(
-              left: media.width / 15,
-              top: media.height / 40,
-              bottom: media.height / 35,
+            SearchSection(
+              searchController: searchController,
+              filterPressd: () {},
+              searchPressd: () {},
             ),
-            // padding: EdgeInsets.only(left: 29.w, top: 31.h, bottom: 28.h),
-            child: Text(
-              'Popular now.',
-              style: Styles.font18W500,
+            // verticalSpace(24),
+            Padding(
+              padding: EdgeInsets.only(
+                left: media.width / 12,
+                top: media.height / 50,
+                bottom: media.height / 60,
+              ),
+              // padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
+              child: Text(
+                'Categories.',
+                style: Styles.font18W500,
+              ),
             ),
-          ),
-          const PopularListView(),
-          Padding(
-            padding: EdgeInsets.only(
-              left: media.width / 17,
-              top: media.height / 35,
-              bottom: media.height / 40,
+            const CategoryListView(),
+            Padding(
+              padding: EdgeInsets.only(
+                left: media.width / 15,
+                top: media.height / 40,
+                bottom: media.height / 35,
+              ),
+              // padding: EdgeInsets.only(left: 29.w, top: 31.h, bottom: 28.h),
+              child: Text(
+                'Popular now.',
+                style: Styles.font18W500,
+              ),
             ),
-            // padding: EdgeInsets.only(left: 25.w, top: 32.h, bottom: 18.h),
-            child: Text(
-              'Trending now.',
-              style: Styles.font18W500,
+            const PopularListView(),
+            Padding(
+              padding: EdgeInsets.only(
+                left: media.width / 17,
+                top: media.height / 35,
+                bottom: media.height / 40,
+              ),
+              // padding: EdgeInsets.only(left: 25.w, top: 32.h, bottom: 18.h),
+              child: Text(
+                'Trending now.',
+                style: Styles.font18W500,
+              ),
             ),
-          ),
-          const TrendingListview()
-        ],
+            const TrendingListview()
+          ],
+        ),
       ),
     );
   }
