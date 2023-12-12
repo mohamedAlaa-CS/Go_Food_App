@@ -7,6 +7,7 @@ import 'package:yjahz_app/core/theming/styles.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/category_list_view.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/popular_list_view.dart';
 import 'package:yjahz_app/features/home/presentation/views/widgets/search_section.dart';
+import 'package:yjahz_app/features/home/presentation/views/widgets/trending_list_view_item.dart';
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
@@ -91,6 +92,14 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const PopularListView(),
+          Padding(
+            padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
+            child: Text(
+              'Trending now.',
+              style: Styles.font18W500,
+            ),
+          ),
+          const TrendingListViewItem()
         ],
       ),
     );
