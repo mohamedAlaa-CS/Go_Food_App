@@ -17,7 +17,7 @@ class AppRouter {
       ),
       GoRoute(
         path: HomeView.routeName,
-        builder: (context, state) =>  HomeView(),
+        builder: (context, state) => HomeView(),
       ),
     ],
   );
