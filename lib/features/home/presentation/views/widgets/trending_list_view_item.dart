@@ -13,7 +13,7 @@ class TrendingListViewItem extends StatelessWidget {
       alignment: AlignmentDirectional.center,
       padding: const EdgeInsets.all(12),
       width: 136.w,
-      height: 109.h,
+      // height: 109.h,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -27,6 +27,7 @@ class TrendingListViewItem extends StatelessWidget {
       ),
       child: Image(
         image: const AssetImage(Assets.testImage),
+        fit: BoxFit.cover,
         height: 51.h,
       ),
     );

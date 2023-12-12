@@ -11,6 +11,7 @@ class PopularListView extends StatelessWidget {
     return SizedBox(
       height: 162.h,
       child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
         separatorBuilder: (context, index) => horzontalMediaSpace(context, 28),
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => const PopularListViewItem(),

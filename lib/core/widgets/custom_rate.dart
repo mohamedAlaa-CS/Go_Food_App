@@ -28,7 +28,7 @@ class CustomRate extends StatelessWidget {
             direction: Axis.horizontal,
           ),
           Text(
-            '4,5',
+            ' 4,5',
             style: Styles.font16W500
                 .copyWith(fontSize: 10.sp, color: AppColors.beige),
           )
