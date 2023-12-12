@@ -84,11 +84,14 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const CategoryListView(),
-          Text(
-            'Popular now.',
-            style: Styles.font18W500,
+          Padding(
+            padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
+            child: Text(
+              'Popular now.',
+              style: Styles.font18W500,
+            ),
           ),
-          const PopularListViewItem()
+          const PopularListViewItem(),
         ],
       ),
     );

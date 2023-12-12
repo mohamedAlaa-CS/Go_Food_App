@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
-import 'package:yjahz_app/core/theming/spacing.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+
+import '../../../../../core/widgets/custom_rate.dart';
 
 class PopularListViewItem extends StatelessWidget {
   const PopularListViewItem({super.key});
@@ -61,34 +61,7 @@ class PopularListViewItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 10.sp,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 62.w,
-                            child: ListView.separated(
-                              padding: EdgeInsets.zero,
-                              separatorBuilder: (context, index) =>
-                                  horzontalMediaSpace(context, 120),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 5,
-                              itemBuilder: (context, index) => Icon(
-                                size: 8.sp,
-                                FontAwesomeIcons.solidStar,
-                                color: AppColors.beige,
-                              ),
-                            ),
-                          ),
-                          Text(
-                            '4,5',
-                            style: Styles.font16W500.copyWith(
-                                fontSize: 8.sp, color: AppColors.beige),
-                          )
-                        ],
-                      ),
-                    )
+                    const CustomRate()
                   ],
                 ),
               ),
