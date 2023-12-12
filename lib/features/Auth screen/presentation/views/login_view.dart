@@ -1,10 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
@@ -15,6 +13,7 @@ import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/signup_view.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/widgets/donot_have_account.dart';
+import 'package:yjahz_app/features/home/presentation/views/home_view.dart';
 
 import '../../../../core/widgets/app_text_form.dart';
 import '../../data/repos/auth_repo_empel.dart';
@@ -37,7 +36,7 @@ class LoginView extends StatelessWidget {
           fit: BoxFit.cover,
         )),
         child: BlocProvider(
-          create: (context) => LoginCubit(AuthRepoImpel(ApiServices(Dio()))),
+          create: (context) => LoginCubit(AuthRepoImpel()),
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginFailuerState) {
@@ -47,7 +46,7 @@ class LoginView extends StatelessWidget {
                 if (state.model.success!) {
                   CustomToast.successToast(state.model.message);
                   CustomToast.closeToast().then((value) {
-                    GoRouter.of(context).push(SignUpview.routeName);
+                    GoRouter.of(context).push(HomeView.routeName);
                   });
                 } else {
                   CustomToast.errorToast(state.model.message);

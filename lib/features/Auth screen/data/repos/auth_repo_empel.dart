@@ -8,16 +8,13 @@ import '../models/user/user_model.dart';
 import 'auth_repo.dart';
 
 class AuthRepoImpel implements AuthRepo {
-  final ApiServices apiServices;
-
-  AuthRepoImpel(this.apiServices);
   @override
   Future<Either<Failure, UserModel>> userLogin({
     required String email,
     required String password,
   }) async {
     try {
-      var data = await apiServices.postData(endPoint: LOGIN, data: {
+      var data = await ApiServices.postData(endPoint: LOGIN, data: {
         'email': email,
         'password': password,
       });
@@ -39,7 +36,7 @@ class AuthRepoImpel implements AuthRepo {
     required String password,
   }) async {
     try {
-      var data = await apiServices.postData(endPoint: SIGNUP, data: {
+      var data = await ApiServices.postData(endPoint: SIGNUP, data: {
         'name': name,
         'email': email,
         'phone': phone,

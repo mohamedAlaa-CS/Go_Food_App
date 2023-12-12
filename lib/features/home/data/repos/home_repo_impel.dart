@@ -8,13 +8,10 @@ import 'package:yjahz_app/features/home/data/repos/home_repo.dart';
 import '../models/home category model/datum_category_model.dart';
 
 class HomeRepoImpel implements HomeRepo {
-  final ApiServices apiServices;
-
-  HomeRepoImpel(this.apiServices);
   @override
   Future<Either<Failure, List<Datum>>> fetchHomeCategory() async {
     try {
-      var data = await apiServices.getData(endPoint: homeCategory);
+      var data = await ApiServices.getData(endPoint: homeCategory);
 
       List<Datum> homeCategoryList = [];
       for (var item in data['data']['data']) {

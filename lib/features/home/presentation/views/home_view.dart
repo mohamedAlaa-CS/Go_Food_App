@@ -11,7 +11,7 @@ import 'package:yjahz_app/features/home/presentation/views/widgets/tranding_list
 
 // ignore: must_be_immutable
 class HomeView extends StatelessWidget {
-  static const String routeName = '/';
+  static const String routeName = '/home_view';
   var searchController = TextEditingController();
 
   HomeView({super.key});

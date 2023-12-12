@@ -1,10 +1,8 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/utils/services/toast.dart';
@@ -21,7 +19,7 @@ import 'login_view.dart';
 
 // ignore: must_be_immutable
 class SignUpview extends StatelessWidget {
-  static const String routeName = "/sign_up";
+  static const String routeName = "/";
   SignUpview({super.key});
   var nameController = TextEditingController();
   var emailController = TextEditingController();
@@ -41,7 +39,7 @@ class SignUpview extends StatelessWidget {
           fit: BoxFit.cover,
         )),
         child: BlocProvider(
-          create: (context) => SignupCubit(AuthRepoImpel(ApiServices(Dio()))),
+          create: (context) => SignupCubit(AuthRepoImpel()),
           child: BlocConsumer<SignupCubit, SignupState>(
             listener: (context, state) {
               if (state is SignupSuccessState) {
