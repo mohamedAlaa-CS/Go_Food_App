@@ -13,9 +13,9 @@ import 'package:yjahz_app/core/widgets/custom_title_text_form_field.dart';
 import 'package:yjahz_app/core/widgets/custom_top_side.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/signup_view.dart';
 import 'package:yjahz_app/features/Auth%20screen/presentation/views/widgets/donot_have_account.dart';
-import 'package:yjahz_app/features/home/presentation/views/home_view.dart';
 
 import '../../../../core/widgets/app_text_form.dart';
+import '../../../home/presentation/views/home_view.dart';
 import '../../data/repos/auth_repo_empel.dart';
 import '../manager/login cubit/login_cubit.dart';
 
@@ -40,16 +40,15 @@ class LoginView extends StatelessWidget {
           child: BlocConsumer<LoginCubit, LoginState>(
             listener: (context, state) {
               if (state is LoginFailuerState) {
-                CustomToast.errorToast(state.error);
+                CustomToast.errorToast(context, state.error);
               }
               if (state is LoginSuccessState) {
                 if (state.model.success!) {
-                  CustomToast.successToast(state.model.message);
-                  CustomToast.closeToast().then((value) {
-                    GoRouter.of(context).push(HomeView.routeName);
-                  });
+                  CustomToast.successToast(context, state.model.message ?? '');
+
+                  GoRouter.of(context).push(HomeView.routeName);
                 } else {
-                  CustomToast.errorToast(state.model.message);
+                  CustomToast.errorToast(context, state.model.message ?? '');
                 }
               }
             },

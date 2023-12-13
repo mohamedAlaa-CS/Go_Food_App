@@ -44,12 +44,11 @@ class SignUpview extends StatelessWidget {
             listener: (context, state) {
               if (state is SignupSuccessState) {
                 if (state.model.success!) {
-                  CustomToast.successToast(state.model.message);
-                  CustomToast.closeToast().then((value) {
-                    GoRouter.of(context).push(LoginView.routeName);
-                  });
+                  CustomToast.successToast(context, state.model.message ?? '');
+
+                  GoRouter.of(context).push(LoginView.routeName);
                 } else {
-                  CustomToast.errorToast(state.model.message);
+                  CustomToast.errorToast(context, state.model.message ?? '');
                 }
               }
             },

@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 class CustomToast {
-  static successToast(String? msg) {
-    Fluttertoast.showToast(
-      msg: msg ?? '',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 1,
+  static ToastFuture successToast(context, String msg) {
+    return showToast(
+      msg,
+      context: context,
+      animation: StyledToastAnimation.scale,
+      reverseAnimation: StyledToastAnimation.fade,
+      position: StyledToastPosition.top,
+      animDuration: const Duration(milliseconds: 350),
+      duration: const Duration(seconds: 1),
+      curve: Curves.elasticOut,
+      reverseCurve: Curves.linear,
       backgroundColor: Colors.green,
-      textColor: Colors.white,
-      fontSize: 16.0.sp,
     );
   }
 
-  static errorToast(String? msg) {
-    Fluttertoast.showToast(
-      msg: msg ?? '',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.TOP,
-      timeInSecForIosWeb: 1,
+  static ToastFuture errorToast(context, String msg) {
+    return showToast(
+      msg,
+      context: context,
+      animation: StyledToastAnimation.scale,
+      reverseAnimation: StyledToastAnimation.fade,
+      position: StyledToastPosition.top,
+      animDuration: const Duration(milliseconds: 350),
+      duration: const Duration(seconds: 1),
+      curve: Curves.elasticOut,
+      reverseCurve: Curves.linear,
       backgroundColor: Colors.red,
-      textColor: Colors.white,
-      fontSize: 16.0.sp,
     );
-  }
-
-  static Future<bool?> closeToast() async {
-    return await Fluttertoast.cancel();
   }
 }
