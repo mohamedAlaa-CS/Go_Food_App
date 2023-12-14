@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yjahz_app/core/Networking/end_point.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
@@ -55,7 +56,7 @@ class HomeView extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 24.w, top: 24.h, bottom: 1.h),
               child: Text(
-                'Hello Ahmed',
+                'Hello $name',
                 style: Styles.font18W500.copyWith(fontSize: 24.sp),
               ),
             ),

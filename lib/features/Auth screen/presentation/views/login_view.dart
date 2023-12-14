@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:yjahz_app/core/Networking/end_point.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/spacing.dart';
@@ -43,6 +44,8 @@ class LoginView extends StatelessWidget {
                 CustomToast.errorToast(context, state.error);
               }
               if (state is LoginSuccessState) {
+                token = state.model.data?.token ?? '';
+                name = state.model.data?.name ?? '';
                 if (state.model.success!) {
                   CustomToast.successToast(context, state.model.message ?? '');
 
