@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:yjahz_app/core/Networking/api_services.dart';
 import 'package:yjahz_app/core/Networking/end_point.dart';
 import 'package:yjahz_app/core/errors/failuer.dart';
-import 'package:yjahz_app/features/home/data/models/popular_model/datum.dart';
 import 'package:yjahz_app/features/home/data/models/popular_model/popular_model.dart';
 import 'package:yjahz_app/features/home/data/repos/home_repo.dart';
 
