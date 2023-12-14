@@ -8,7 +8,8 @@ class HomePopularCubit extends Cubit<HomePopularState> {
   HomePopularCubit(this.homeRepo) : super(HomePopularInitial());
   final HomeRepo homeRepo;
   static HomePopularCubit get(context) => BlocProvider.of(context);
-  List<PopularData> popularData = [];
+  List<PopularDataModel> popularDataList = [];
+
   fecthPopular({
     required double lat,
     required double lng,
@@ -19,7 +20,7 @@ class HomePopularCubit extends Cubit<HomePopularState> {
     result.fold((failuer) {
       emit(HomePopularFailuerState(failuer.message));
     }, (popularModel) {
-      popularData.addAll(popularModel.data ?? []);
+      popularDataList.addAll(popularModel);
       emit(HomePopularSuccessState());
     });
   }

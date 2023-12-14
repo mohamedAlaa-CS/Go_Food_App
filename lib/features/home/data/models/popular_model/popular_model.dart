@@ -6,7 +6,7 @@ class PopularModel extends Equatable {
   final bool? success;
   final int? responseCode;
   final String? message;
-  final List<PopularData>? data;
+  final List<PopularDataModel>? data;
 
   const PopularModel({
     this.success,
@@ -20,7 +20,7 @@ class PopularModel extends Equatable {
         responseCode: json['response_code'] as int?,
         message: json['message'] as String?,
         data: (json['data'] as List<dynamic>?)
-            ?.map((e) => PopularData.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => PopularDataModel.fromJson(e as Map<String, dynamic>))
             .toList(),
       );
 

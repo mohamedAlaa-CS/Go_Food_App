@@ -7,8 +7,8 @@ import '../theming/app_colors.dart';
 import '../theming/styles.dart';
 
 class CustomRate extends StatelessWidget {
-  const CustomRate({super.key});
-
+  const CustomRate({super.key, required this.rate});
+  final double? rate;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +18,7 @@ class CustomRate extends StatelessWidget {
         children: [
           RatingBarIndicator(
             itemPadding: EdgeInsets.only(right: 3.w),
-            rating: 4,
+            rating: rate ?? 0,
             itemBuilder: (context, index) => const Icon(
               FontAwesomeIcons.solidStar,
               color: AppColors.beige,
@@ -28,7 +28,7 @@ class CustomRate extends StatelessWidget {
             direction: Axis.horizontal,
           ),
           Text(
-            ' 4,5',
+            ' $rate',
             style: Styles.font16W500
                 .copyWith(fontSize: 10.sp, color: AppColors.beige),
           )

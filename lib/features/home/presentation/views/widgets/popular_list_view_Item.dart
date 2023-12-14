@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
-import 'package:yjahz_app/core/theming/assets.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+import 'package:yjahz_app/features/home/data/models/popular_model/datum.dart';
 
 import '../../../../../core/widgets/custom_rate.dart';
 
 class PopularListViewItem extends StatelessWidget {
-  const PopularListViewItem({super.key});
-
+  const PopularListViewItem({super.key, required this.model});
+  final PopularDataModel model;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -18,7 +18,7 @@ class PopularListViewItem extends StatelessWidget {
           Image(
             height: 162.h,
             width: 188.w,
-            image: const AssetImage(Assets.testBigImage),
+            image: NetworkImage(model.image ?? ''),
             fit: BoxFit.cover,
           ),
           IconButton(
@@ -34,7 +34,7 @@ class PopularListViewItem extends StatelessWidget {
               width: 188.w,
               height: 76.h,
               decoration:
-                  BoxDecoration(color: AppColors.textColor.withOpacity(0.4)),
+                  BoxDecoration(color: AppColors.textColor.withOpacity(0.75)),
               child: Padding(
                 padding: EdgeInsets.only(left: 11.w, bottom: 10.h, top: 7.h),
                 child: Column(
@@ -42,7 +42,7 @@ class PopularListViewItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Winges',
+                      model.name ?? '',
                       style: Styles.font16W500.copyWith(color: AppColors.beige),
                     ),
                     Row(
@@ -53,7 +53,7 @@ class PopularListViewItem extends StatelessWidget {
                           size: 10.sp,
                         ),
                         Text(
-                          ' 15 Km',
+                          ' ${double.parse(model.distance ?? '0') / 1000} Km',
                           style: Styles.font12W400.copyWith(
                             fontSize: 8.sp,
                             color: AppColors.beige,
@@ -61,7 +61,9 @@ class PopularListViewItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                    const CustomRate()
+                    CustomRate(
+                      rate: double.parse(model.rate ?? '0'),
+                    )
                   ],
                 ),
               ),
