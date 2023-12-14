@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yjahz_app/features/home/data/models/trending_model/datum.dart';
 
 import '../../../../../core/theming/app_colors.dart';
-import '../../../../../core/theming/assets.dart';
 
 class TrendingListViewItem extends StatelessWidget {
-  const TrendingListViewItem({super.key});
-
+  const TrendingListViewItem({super.key, required this.model});
+  final TrendingDataModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,9 +26,10 @@ class TrendingListViewItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Image(
-        image: const AssetImage(Assets.testImage),
+        image: NetworkImage(model.logo ?? ''),
         fit: BoxFit.cover,
-        height: 51.h,
+        height: double.infinity,
+        // width: double.infinity,
       ),
     );
   }

@@ -7,6 +7,7 @@ import 'package:yjahz_app/core/theming/app_theme.dart';
 import 'package:yjahz_app/features/home/data/repos/home_repo_impel.dart';
 import 'package:yjahz_app/features/home/presentation/manager/home%20category%20cubit/home_category_cubit.dart';
 import 'package:yjahz_app/features/home/presentation/manager/home%20popular%20cubit/home_popular_cubit.dart';
+import 'package:yjahz_app/features/home/presentation/manager/home%20trending%20cubit/home_trending_cubit.dart';
 
 void main() {
   ApiServices.init();
@@ -28,6 +29,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HomePopularCubit(HomeRepoImpel())
             ..fecthPopular(lat: 29.1931, lng: 30.6421),
+        ),
+        BlocProvider(
+          create: (context) => HomeTrendingCubit(HomeRepoImpel())
+            ..fetchTrending(lat: 29.1931, lng: 30.6421),
         ),
       ],
       child: ScreenUtilInit(
