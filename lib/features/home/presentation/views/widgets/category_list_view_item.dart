@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+import 'package:yjahz_app/core/widgets/custom_cached_network_imge.dart';
 
 import '../../../data/models/home category model/datum_category_model.dart';
 
@@ -31,11 +32,11 @@ class CategoryItem extends StatelessWidget {
           Row(
             children: [
               const Spacer(flex: 2),
-              Image(
+              CustomCachedNetworkImage(
+                imageUrl: model.image ?? '',
                 height: 72.h,
-                image: NetworkImage(model.image ?? ''),
-                fit: BoxFit.cover,
               ),
+              
               const Spacer(),
             ],
           ),

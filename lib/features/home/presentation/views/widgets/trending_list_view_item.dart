@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yjahz_app/core/widgets/custom_cached_network_imge.dart';
 import 'package:yjahz_app/features/home/data/models/trending_model/datum.dart';
 
 import '../../../../../core/theming/app_colors.dart';
@@ -25,11 +26,9 @@ class TrendingListViewItem extends StatelessWidget {
         color: AppColors.white,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Image(
-        image: NetworkImage(model.logo ?? ''),
-        fit: BoxFit.cover,
+      child: CustomCachedNetworkImage(
+        imageUrl: model.logo ?? '',
         height: double.infinity,
-        // width: double.infinity,
       ),
     );
   }

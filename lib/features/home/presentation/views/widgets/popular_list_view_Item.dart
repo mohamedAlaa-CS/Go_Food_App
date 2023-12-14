@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yjahz_app/core/theming/app_colors.dart';
 import 'package:yjahz_app/core/theming/styles.dart';
+import 'package:yjahz_app/core/widgets/custom_cached_network_imge.dart';
 import 'package:yjahz_app/features/home/data/models/popular_model/datum.dart';
 
 import '../../../../../core/widgets/custom_rate.dart';
@@ -15,11 +16,10 @@ class PopularListViewItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(18),
       child: Stack(
         children: [
-          Image(
+          CustomCachedNetworkImage(
+            imageUrl: model.image ?? '',
             height: 162.h,
             width: 188.w,
-            image: NetworkImage(model.image ?? ''),
-            fit: BoxFit.cover,
           ),
           IconButton(
             onPressed: () {},
