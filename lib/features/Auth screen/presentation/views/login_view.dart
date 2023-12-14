@@ -165,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                                       GoRouter.of(context)
                                           .push(SignUpview.routeName);
                                     }),
-                                    verticalSpace(25)
+                                    verticalSpace(10)
                                   ],
                                 ),
                               ),

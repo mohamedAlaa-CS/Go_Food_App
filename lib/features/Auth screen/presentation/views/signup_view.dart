@@ -74,7 +74,7 @@ class _SignUpviewState extends State<SignUpview> {
             },
             builder: (context, state) {
               return Scaffold(
-                backgroundColor: Colors.transparent,
+                backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
                 body: SingleChildScrollView(
                   child: SizedBox(
                     height: media.height,
@@ -199,7 +199,7 @@ class _SignUpviewState extends State<SignUpview> {
 
                                           return null;
                                         }),
-                                    verticlMediaSpace(context, 40),
+                                    verticlMediaSpace(context, 50),
                                     ConditionalBuilder(
                                       condition: state is! SignupLoadingState,
                                       builder: (context) => CustomButton(
@@ -222,12 +222,13 @@ class _SignUpviewState extends State<SignUpview> {
                                         color: AppColors.green,
                                       )),
                                     ),
-                                    verticlMediaSpace(context, 90),
+                                    // verticlMediaSpace(context, 90),
                                     HaveAnAccount(onPressed: () {
                                       GoRouter.of(context)
                                           .push(LoginView.routeName);
                                     }),
-                                    verticalSpace(25)
+                                    // verticlMediaSpace(context, 100),
+                                    verticalSpace(10)
                                   ],
                                 ),
                               ),
