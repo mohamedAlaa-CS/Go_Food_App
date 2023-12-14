@@ -21,8 +21,8 @@ class TitleOfSection extends StatelessWidget {
       padding: padding ??
           EdgeInsets.only(
               left: media.width / 12,
-              top: media.height / 50,
-              bottom: media.height / 60,
+              top: media.height / 150,
+              bottom: media.height / 130,
               right: media.width / 50),
       // padding: EdgeInsets.only(left: 34.w, top: 24.h, bottom: 18.h),
       child: Row(

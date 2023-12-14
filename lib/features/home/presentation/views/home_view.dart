@@ -19,6 +19,7 @@ class HomeView extends StatelessWidget {
   HomeView({super.key});
   @override
   Widget build(BuildContext context) {
+    var media = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -89,6 +90,11 @@ class HomeView extends StatelessWidget {
             TitleOfSection(
               title: 'Trending now.',
               allViewClicked: () {},
+              padding: EdgeInsets.only(
+                left: media.width / 12,
+                top: media.height / 80,
+                bottom: media.height / 80,
+              ),
             ),
             const TrendingListview()
           ],
