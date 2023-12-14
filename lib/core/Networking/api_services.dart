@@ -2,8 +2,6 @@ import 'package:dio/dio.dart';
 
 class ApiServices {
   static late Dio dio;
-  final _baseUrl = 'https://yogahez.mountasher.online/api';
-  // ApiServices(this.dio);
   static init() {
     dio = Dio(BaseOptions(
       baseUrl: 'https://yogahez.mountasher.online/api',

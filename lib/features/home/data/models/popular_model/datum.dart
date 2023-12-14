@@ -4,7 +4,7 @@ import 'category.dart';
 import 'information.dart';
 import 'product_category.dart';
 
-class Datum extends Equatable {
+class PopularData extends Equatable {
   final int? id;
   final String? name;
   final String? email;
@@ -28,7 +28,7 @@ class Datum extends Equatable {
   final Information? information;
   final List<ProductCategory>? productCategories;
 
-  const Datum({
+  const PopularData({
     this.id,
     this.name,
     this.email,
@@ -53,7 +53,7 @@ class Datum extends Equatable {
     this.productCategories,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PopularData.fromJson(Map<String, dynamic> json) => PopularData(
         id: json['id'] as int?,
         name: json['name'] as String?,
         email: json['email'] as String?,
