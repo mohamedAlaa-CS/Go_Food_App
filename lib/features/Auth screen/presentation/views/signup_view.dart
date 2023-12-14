@@ -18,15 +18,35 @@ import '../../../../core/widgets/custom_top_side.dart';
 import 'login_view.dart';
 
 // ignore: must_be_immutable
-class SignUpview extends StatelessWidget {
+class SignUpview extends StatefulWidget {
   static const String routeName = "/";
-  SignUpview({super.key});
+  const SignUpview({super.key});
+
+  @override
+  State<SignUpview> createState() => _SignUpviewState();
+}
+
+class _SignUpviewState extends State<SignUpview> {
   var nameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var phoneController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var confirmPasswordController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    super.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

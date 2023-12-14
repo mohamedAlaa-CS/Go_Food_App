@@ -21,12 +21,27 @@ import '../../data/repos/auth_repo_empel.dart';
 import '../manager/login cubit/login_cubit.dart';
 
 // ignore: must_be_immutable
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   static const String routeName = '/login_view';
-  LoginView({super.key});
+  const LoginView({super.key});
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var formKey = GlobalKey<FormState>();
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
