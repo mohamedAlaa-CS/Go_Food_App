@@ -12,11 +12,13 @@ class ApiServices {
   static Future<Map<String, dynamic>> getData(
       {required String endPoint,
       Map<String, dynamic>? query,
+      Map<String, dynamic>? data,
       String lang = 'en'}) async {
     dio.options.headers = {
       'lang': lang,
     };
     var response = await dio.get(
+      data: data,
       endPoint,
       queryParameters: query,
     );
