@@ -11,7 +11,7 @@ class HomeCategoryCubit extends Cubit<HomeCategoryState> {
   final HomeRepo homeRepo;
 
   //! fetch category Data
-  List<Datum> homeCategoryData = [];
+  List<CategoryData> homeCategoryData = [];
   fetchHomeCategory() async {
     emit(HomeCategoryLoadingState());
 

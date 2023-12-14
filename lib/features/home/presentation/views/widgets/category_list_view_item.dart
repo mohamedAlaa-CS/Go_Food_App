@@ -7,7 +7,7 @@ import '../../../data/models/home category model/datum_category_model.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, required this.model});
-  final Datum model;
+  final CategoryData model;
   @override
   Widget build(BuildContext context) {
     return Container(

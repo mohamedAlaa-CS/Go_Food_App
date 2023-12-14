@@ -9,13 +9,13 @@ import '../models/home category model/datum_category_model.dart';
 
 class HomeRepoImpel implements HomeRepo {
   @override
-  Future<Either<Failure, List<Datum>>> fetchHomeCategory() async {
+  Future<Either<Failure, List<CategoryData>>> fetchHomeCategory() async {
     try {
       var data = await ApiServices.getData(endPoint: homeCategory);
 
-      List<Datum> homeCategoryList = [];
+      List<CategoryData> homeCategoryList = [];
       for (var item in data['data']['data']) {
-        homeCategoryList.add(Datum.fromJson(item));
+        homeCategoryList.add(CategoryData.fromJson(item));
       }
 
       print(homeCategoryList);

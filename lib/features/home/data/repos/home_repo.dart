@@ -4,5 +4,5 @@ import 'package:yjahz_app/core/errors/failuer.dart';
 import '../models/home category model/datum_category_model.dart';
 
 abstract class HomeRepo {
-  Future<Either<Failure, List<Datum>>> fetchHomeCategory();
+  Future<Either<Failure, List<CategoryData>>> fetchHomeCategory();
 }
