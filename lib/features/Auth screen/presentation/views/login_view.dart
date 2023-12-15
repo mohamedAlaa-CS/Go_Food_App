@@ -79,10 +79,12 @@ class _LoginViewState extends State<LoginView> {
                     child: Column(
                       children: [
                         const Spacer(flex: 2),
-                        const Image(
-                          image: AssetImage(Assets.logo),
+                        Image(
+                          image: const AssetImage(Assets.logo),
                           filterQuality: FilterQuality.high,
                           fit: BoxFit.cover,
+                          height: 76.h,
+                          width: 170.w,
                         ),
                         const Spacer(),
                         Padding(

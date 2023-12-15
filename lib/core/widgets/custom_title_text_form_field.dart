@@ -15,7 +15,6 @@ class CustomtitleTextFormField extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(
           bottom: 8.h,
-          top: 13.h,
           left: 10.w,
         ),
         child: Text(text, style: textStyle ?? Styles.font18W500),

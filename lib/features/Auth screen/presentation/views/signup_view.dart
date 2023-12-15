@@ -81,10 +81,13 @@ class _SignUpviewState extends State<SignUpview> {
                     child: Column(
                       children: [
                         const Spacer(flex: 2),
-                        const Image(
-                          image: AssetImage(Assets.logo),
+                        Image(
+                          //color: AppColors.primary,
+                          image: const AssetImage(Assets.logo),
                           filterQuality: FilterQuality.high,
                           fit: BoxFit.cover,
+                          height: 76.h,
+                          width: 170.w,
                         ),
                         const Spacer(),
                         Padding(
@@ -133,7 +136,6 @@ class _SignUpviewState extends State<SignUpview> {
 
                                           return null;
                                         }),
-                                    verticlMediaSpace(context, 130),
                                     const CustomtitleTextFormField(
                                         text: 'Phone Number.'),
                                     AppTextForm(
@@ -199,7 +201,7 @@ class _SignUpviewState extends State<SignUpview> {
 
                                           return null;
                                         }),
-                                    verticlMediaSpace(context, 50),
+                                    verticlMediaSpace(context, 80),
                                     ConditionalBuilder(
                                       condition: state is! SignupLoadingState,
                                       builder: (context) => CustomButton(
@@ -222,13 +224,12 @@ class _SignUpviewState extends State<SignUpview> {
                                         color: AppColors.green,
                                       )),
                                     ),
-                                    // verticlMediaSpace(context, 90),
+                                    // verticlMediaSpace(context, 180),
                                     HaveAnAccount(onPressed: () {
                                       GoRouter.of(context)
                                           .push(LoginView.routeName);
                                     }),
-                                    // verticlMediaSpace(context, 100),
-                                    verticalSpace(10)
+                                    verticalSpace(8)
                                   ],
                                 ),
                               ),

@@ -35,6 +35,7 @@ class AppTextForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 77.h,
       decoration: const BoxDecoration(boxShadow: [
         BoxShadow(
           blurRadius: 10,
@@ -43,6 +44,8 @@ class AppTextForm extends StatelessWidget {
         )
       ]),
       child: TextFormField(
+        textAlignVertical: TextAlignVertical.center,
+        style: Styles.font16W300.copyWith(color: Colors.black),
         validator: validator ??
             (value) {
               return null;
@@ -52,6 +55,8 @@ class AppTextForm extends StatelessWidget {
         obscuringCharacter: '*',
         keyboardType: textType,
         decoration: InputDecoration(
+          errorStyle: TextStyle(
+              fontSize: 11.sp, height: 1.h, fontWeight: FontWeight.bold),
           suffixIcon: InkWell(
             onTap: suffixPressed ?? () {},
             child: Icon(suffixIcon, color: Colors.grey.shade600),
@@ -86,6 +91,14 @@ class AppTextForm extends StatelessWidget {
                   width: .25,
                 ),
               ),
+          errorBorder: OutlineInputBorder(
+            //gapPadding: 0,
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(
+              color: Colors.red,
+              width: .25,
+            ),
+          ),
         ),
       ),
     );
