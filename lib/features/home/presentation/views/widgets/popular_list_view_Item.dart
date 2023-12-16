@@ -32,7 +32,7 @@ class PopularListViewItem extends StatelessWidget {
             bottom: 0,
             child: Container(
               width: 188.w,
-              height: 76.h,
+              height: 80.h,
               decoration:
                   BoxDecoration(color: AppColors.textColor.withOpacity(0.7)),
               child: Padding(

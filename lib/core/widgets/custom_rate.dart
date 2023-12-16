@@ -11,29 +11,26 @@ class CustomRate extends StatelessWidget {
   final double? rate;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 10.h,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          RatingBarIndicator(
-            itemPadding: EdgeInsets.only(right: 3.w),
-            rating: rate ?? 0,
-            itemBuilder: (context, index) => const Icon(
-              FontAwesomeIcons.solidStar,
-              color: AppColors.beige,
-            ),
-            itemCount: 5,
-            itemSize: 10.0,
-            direction: Axis.horizontal,
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        RatingBarIndicator(
+          itemPadding: EdgeInsets.only(right: 3.w),
+          rating: rate ?? 0,
+          itemBuilder: (context, index) => const Icon(
+            FontAwesomeIcons.solidStar,
+            color: AppColors.beige,
           ),
-          Text(
-            ' $rate',
-            style: Styles.font16W500
-                .copyWith(fontSize: 10.sp, color: AppColors.beige),
-          )
-        ],
-      ),
+          itemCount: 5,
+          itemSize: 10.0,
+          direction: Axis.horizontal,
+        ),
+        Text(
+          ' $rate',
+          style:
+              Styles.font16W500.copyWith(fontSize: 10, color: AppColors.beige),
+        )
+      ],
     );
   }
 }

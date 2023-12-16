@@ -94,6 +94,7 @@ class HomeView extends StatelessWidget {
                 left: media.width / 12,
                 top: media.height / 80,
                 bottom: media.height / 80,
+                // right: media.width / 50
               ),
             ),
             const TrendingListview()
